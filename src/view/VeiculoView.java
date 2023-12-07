@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import controller.CatalogoController;
 import controller.MainController;
 import exception.CategoriaException;
+import model.Categoria;
+import model.Cliente;
 import model.EStatusVeiculo;
 
 import javax.swing.JLabel;
@@ -37,7 +39,7 @@ public class VeiculoView extends JFrame implements Serializable {
     private final JTextField textModelo;
     private final JTextField textAnoModelo;
     private final JTextField textFabricanteModelo;
-    private final JTextField textCategoria;
+    private final JComboBox<Categoria> comboBoxCategoria;
 
     public VeiculoView() {
         setTitle("Veiculo");
@@ -207,24 +209,22 @@ public class VeiculoView extends JFrame implements Serializable {
         panel_1.add(textFabricanteModelo, gbc_textFabricanteModelo);
         textFabricanteModelo.setColumns(10);
 
-
-        JLabel lblCategoria = new JLabel("Categoria:");
+        JLabel lblCategoria = new JLabel("Categoria");
         lblCategoria.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         GridBagConstraints gbc_lblCategoria = new GridBagConstraints();
+        gbc_lblCategoria.insets = new Insets(0, 0, 0, 5);
         gbc_lblCategoria.anchor = GridBagConstraints.EAST;
-        gbc_lblCategoria.insets = new Insets(0, 0, 5, 5);
         gbc_lblCategoria.gridx = 1;
         gbc_lblCategoria.gridy = 9;
         panel_1.add(lblCategoria, gbc_lblCategoria);
 
-        textCategoria = new JTextField();
-        GridBagConstraints gbc_textCategoria = new GridBagConstraints();
-        gbc_textCategoria.insets = new Insets(0, 0, 5, 0);
-        gbc_textCategoria.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textCategoria.gridx = 2;
-        gbc_textCategoria.gridy = 9;
-        panel_1.add(textCategoria, gbc_textCategoria);
-        textCategoria.setColumns(10);
+        comboBoxCategoria = new JComboBox<>(MainController.getCatalogoController().getDefaultComboBoxModelForCategoria());
+
+        GridBagConstraints gbc_comboBoxCategoria = new GridBagConstraints();
+        gbc_comboBoxCategoria.fill = GridBagConstraints.HORIZONTAL;
+        gbc_comboBoxCategoria.gridx = 2;
+        gbc_comboBoxCategoria.gridy = 9;
+        panel_1.add(comboBoxCategoria, gbc_comboBoxCategoria);
 
         JButton btnSalvar = new JButton("Salvar");
         btnSalvar.addActionListener(e -> actionSalvar());
@@ -244,7 +244,7 @@ public class VeiculoView extends JFrame implements Serializable {
         textFabricanteModelo.setText("");
         textAnoModelo.setText("");
         comboBox.setSelectedItem(null);
-        textCategoria.setText("");
+
         textKm.setText("");
     }
 
@@ -259,14 +259,14 @@ public class VeiculoView extends JFrame implements Serializable {
             String anoModelo = textAnoModelo.getText();
             String fabricante = textFabricanteModelo.getText();
             double km = Double.parseDouble(textKm.getText());
-            String categoria = textCategoria.getText();
+//            String categoria = textCategoria.getText();
 
-            catalogoController.addVeiculo(placa, ano, cor, nomeModelo, anoModelo, fabricante, categoria, status, km);
+            catalogoController.addVeiculo(placa, ano, cor, nomeModelo, anoModelo, fabricante, null, status, km);
             JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
             limparForm();
         } catch (CategoriaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
-            textCategoria.setText("");
+//            textCategoria.setText("");
         }
     }
 }

@@ -93,7 +93,6 @@ public class CatalogoController implements Serializable {
     }
 
     public List<String> getListaFormatedCategorias() {
-
         List<String> lista = new ArrayList<>();
 
         for (Categoria categorias : categorias.values())

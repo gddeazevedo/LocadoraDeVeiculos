@@ -164,14 +164,13 @@ public class ReservaView extends JFrame implements Serializable {
         gbc_lblSeguros.gridy = 4;
         panel_1.add(lblSeguros, gbc_lblSeguros);
 
-        listSeguro = new JList<String>(new Vector<>(MainController.getCatalogoController().getSeguros()));
+        listSeguro = new JList<>(new Vector<>(MainController.getCatalogoController().getSeguros()));
         GridBagConstraints gbc_listSeguro = new GridBagConstraints();
         gbc_listSeguro.insets = new Insets(0, 0, 5, 0);
         gbc_listSeguro.fill = GridBagConstraints.BOTH;
         gbc_listSeguro.gridx = 2;
         gbc_listSeguro.gridy = 4;
         panel_1.add(listSeguro, gbc_listSeguro);
-
 
         JLabel lblCliente = new JLabel("Cliente:");
         lblCliente.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));

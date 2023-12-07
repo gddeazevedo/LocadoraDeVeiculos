@@ -28,4 +28,9 @@ public class Modelo implements Serializable {
     public String getFabricante() {
         return fabricante;
     }
+
+    @Override
+    public String toString() {
+        return getNome() + " " + getFabricante() + " " + getAno();
+    }
 }
