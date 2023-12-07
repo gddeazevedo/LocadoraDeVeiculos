@@ -92,8 +92,6 @@ public class CatalogoController implements Serializable {
     public DefaultComboBoxModel<Veiculo> getDefaultComboBoxModelForVeiculoFromCategoria(Categoria categoria) {
         DefaultComboBoxModel<Veiculo> model = new DefaultComboBoxModel<>();
 
-        System.out.println(categoria.getVeiculos());
-
         categoria.getVeiculos().forEach(veiculo -> {
             var status = veiculo.getStatus();
             if (status == EStatusVeiculo.DISPONIVEL) {
