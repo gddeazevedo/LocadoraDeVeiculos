@@ -35,16 +35,13 @@ public class CatalogoController implements Serializable {
             String nomeModelo,
             String anoModelo,
             String fabricanteModelo,
-            String categoria,
+            Categoria categoria,
             EStatusVeiculo status,
             double km
     ) throws CategoriaException {
-        if (!categorias.containsKey(categoria)) {
-            throw new CategoriaException("Categoria inexistente");
-        }
         Modelo modelo = new Modelo(nomeModelo, anoModelo, fabricanteModelo);
         Veiculo veiculo = new Veiculo(placa, anoFabricacao, cor, modelo, status, km);
-        categorias.get(categoria).addVeiculo(veiculo);
+        categoria.addVeiculo(veiculo);
         veiculos.put(placa, veiculo);
         MainController.save();
     }

@@ -35,7 +35,7 @@ public class VeiculoView extends JFrame implements Serializable {
     private final JTextField textCor;
     private final JTextField textAno;
     private final JTextField textKm;
-    private final JComboBox<EStatusVeiculo> comboBox;
+    private final JComboBox<EStatusVeiculo> comboBoxStatusVeiculo;
     private final JTextField textModelo;
     private final JTextField textAnoModelo;
     private final JTextField textFabricanteModelo;
@@ -146,13 +146,13 @@ public class VeiculoView extends JFrame implements Serializable {
         gbc_lblStatus.gridy = 5;
         panel_1.add(lblStatus, gbc_lblStatus);
 
-        comboBox = new JComboBox<>(EStatusVeiculo.values());
+        comboBoxStatusVeiculo = new JComboBox<>(EStatusVeiculo.values());
         GridBagConstraints gbc_comboBox = new GridBagConstraints();
         gbc_comboBox.insets = new Insets(0, 0, 5, 0);
         gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
         gbc_comboBox.gridx = 2;
         gbc_comboBox.gridy = 5;
-        panel_1.add(comboBox, gbc_comboBox);
+        panel_1.add(comboBoxStatusVeiculo, gbc_comboBox);
 
         JLabel lblModelo = new JLabel("Nome modelo:");
         lblModelo.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -243,8 +243,8 @@ public class VeiculoView extends JFrame implements Serializable {
         textAno.setText("");
         textFabricanteModelo.setText("");
         textAnoModelo.setText("");
-        comboBox.setSelectedItem(null);
-
+        comboBoxStatusVeiculo.setSelectedItem(null);
+        comboBoxCategoria.setSelectedItem(null);
         textKm.setText("");
     }
 
@@ -254,19 +254,19 @@ public class VeiculoView extends JFrame implements Serializable {
             String placa = textPlaca.getText();
             String cor = textCor.getText();
             String ano = textAno.getText();
-            EStatusVeiculo status = (EStatusVeiculo) comboBox.getSelectedItem();
+            EStatusVeiculo status = (EStatusVeiculo) comboBoxStatusVeiculo.getSelectedItem();
             String nomeModelo = textModelo.getText();
             String anoModelo = textAnoModelo.getText();
             String fabricante = textFabricanteModelo.getText();
             double km = Double.parseDouble(textKm.getText());
-//            String categoria = textCategoria.getText();
+            Categoria categoria = (Categoria) comboBoxCategoria.getSelectedItem();
 
-            catalogoController.addVeiculo(placa, ano, cor, nomeModelo, anoModelo, fabricante, null, status, km);
+            catalogoController.addVeiculo(placa, ano, cor, nomeModelo, anoModelo, fabricante, categoria, status, km);
             JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
             limparForm();
         } catch (CategoriaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
-//            textCategoria.setText("");
+
         }
     }
 }
