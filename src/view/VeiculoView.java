@@ -266,7 +266,6 @@ public class VeiculoView extends JFrame implements Serializable {
             limparForm();
         } catch (CategoriaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
-
         }
     }
 }

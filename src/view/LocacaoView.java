@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import controller.ServicosController;
 import controller.MainController;
 
+import model.Reserva;
 import model.Veiculo;
 
 import java.awt.GridBagLayout;
@@ -33,8 +34,7 @@ public class LocacaoView extends JFrame implements Serializable {
 
     private final JTextField textKmInicial;
     private final JComboBox<String> comboBoxReserva;
-    private final JComboBox<Veiculo> comboBoxVeiculos;
-
+    private JComboBox<Veiculo> comboBoxVeiculos;
 
     public LocacaoView() {
         setTitle("Locacao");
@@ -87,7 +87,34 @@ public class LocacaoView extends JFrame implements Serializable {
         gbc_lblVeiculo.gridy = 1;
         panel_1.add(lblVeiculo, gbc_lblVeiculo);
 
-        comboBoxVeiculos = new JComboBox<>(MainController.getCatalogoController().getDefaultComboBoxModelForVeiculo());
+        comboBoxReserva.addActionListener(e -> {
+            panel_1.remove(comboBoxVeiculos);
+            String reservaUUID = (String) comboBoxReserva.getSelectedItem();
+            Reserva reserva = MainController.getServicosController().getReservaByUUID(reservaUUID);
+
+            comboBoxVeiculos = new JComboBox<>(
+                    MainController
+                            .getCatalogoController()
+                            .getDefaultComboBoxModelForVeiculoFromCategoria(reserva.getCategoria())
+            );
+
+            GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
+            gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
+            gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
+            gbc_comboBox_1.gridx = 2;
+            gbc_comboBox_1.gridy = 1;
+            panel_1.add(comboBoxVeiculos, gbc_comboBox_1);
+        });
+
+        String reservaUUID = (String) comboBoxReserva.getSelectedItem();
+        Reserva reserva = MainController.getServicosController().getReservaByUUID(reservaUUID);
+
+        comboBoxVeiculos = new JComboBox<>(
+                MainController
+                        .getCatalogoController()
+                        .getDefaultComboBoxModelForVeiculoFromCategoria(reserva.getCategoria())
+        );
+
         GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
         gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
         gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
@@ -144,6 +171,17 @@ public class LocacaoView extends JFrame implements Serializable {
         gbc_btnSalvar.gridx = 0;
         gbc_btnSalvar.gridy = 5;
         panel_1.add(btnSalvar, gbc_btnSalvar);
+    }
+
+    public void initComboBoxVeiculo() {
+        String reservaUUID = (String) comboBoxReserva.getSelectedItem();
+        Reserva reserva = MainController.getServicosController().getReservaByUUID(reservaUUID);
+
+        comboBoxVeiculos = new JComboBox<>(
+                MainController
+                        .getCatalogoController()
+                        .getDefaultComboBoxModelForVeiculoFromCategoria(reserva.getCategoria())
+        );
     }
 
     protected void actionSalvar() {

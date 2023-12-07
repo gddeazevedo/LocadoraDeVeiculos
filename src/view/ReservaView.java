@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import java.awt.Insets;
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.DateTimeException;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -202,15 +203,22 @@ public class ReservaView extends JFrame implements Serializable {
         try {
             dInicio = new SimpleDateFormat("dd/MM/yyyy").parse(textDataInicio.getText());
             dFim = new SimpleDateFormat("dd/MM/yyyy").parse(textDataFim.getText());
+
+            if (dInicio.after(dFim)) {
+                throw new DateTimeException("");
+            }
+
             JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
             servicosController.addReserva(categoria, dInicio, dFim, cliente, seguros);
             this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, String.format("Data invalida. Favor inserir no formato dd/mm/aaaa!"),
                     "Data invalida", JOptionPane.INFORMATION_MESSAGE);
-            e.printStackTrace();
+        } catch (DateTimeException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            textDataInicio.setText("");
+            textDataFim.setText("");
         }
-
     }
 
 }

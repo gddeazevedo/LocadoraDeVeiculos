@@ -140,15 +140,8 @@ public class ServicosController implements Serializable {
         return lista;
     }
 
-    public Set<UUID> getListaReservas() {
-        return reservas.keySet();
-    }
-
-    public Set<UUID> getListaLocacao() {
-        return locacoes.keySet();
-    }
-
-    public Set<Integer> getListaDevolucao() {
-        return devolucoes.keySet();
+    public Reserva getReservaByUUID(String reservaUUID) {
+        UUID key = UUID.fromString(reservaUUID);
+        return reservas.get(key);
     }
 }

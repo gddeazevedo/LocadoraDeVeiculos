@@ -89,6 +89,21 @@ public class CatalogoController implements Serializable {
         return model;
     }
 
+    public DefaultComboBoxModel<Veiculo> getDefaultComboBoxModelForVeiculoFromCategoria(Categoria categoria) {
+        DefaultComboBoxModel<Veiculo> model = new DefaultComboBoxModel<>();
+
+        System.out.println(categoria.getVeiculos());
+
+        categoria.getVeiculos().forEach(veiculo -> {
+            var status = veiculo.getStatus();
+            if (status == EStatusVeiculo.DISPONIVEL) {
+                model.addElement(veiculo);
+            }
+        });
+
+        return model;
+    }
+
     public List<String> getListaFormatedCategorias() {
         List<String> lista = new ArrayList<>();
 
