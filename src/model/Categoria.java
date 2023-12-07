@@ -14,10 +14,6 @@ public class Categoria implements Serializable {
     private final List<Veiculo> veiculos = new ArrayList<>();
     private final List<Seguro> seguros = new ArrayList<>();
 
-    public Categoria(String nome) {
-        this.nome = nome;
-    }
-
     public Categoria(String nome, double tarifaDiaria) {
         this.nome = nome;
         this.tarifaDiaria = tarifaDiaria;
@@ -58,6 +54,10 @@ public class Categoria implements Serializable {
 
     public Veiculo getVeiculo(int index) {
         return veiculos.get(index);
+    }
+
+    public void addSeguro(Seguro seguro) {
+        seguros.add(seguro);
     }
 
     @Override
