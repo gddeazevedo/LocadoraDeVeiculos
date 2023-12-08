@@ -28,6 +28,7 @@ public abstract class Cliente implements Serializable {
     }
 
     public abstract String getNomeContato();
+    public abstract String getFormatedInfo();
 
     public String getNome() {
         return nome;
