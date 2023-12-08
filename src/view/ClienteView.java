@@ -16,6 +16,7 @@ import java.awt.Insets;
 
 import java.awt.Font;
 
+import java.awt.event.WindowEvent;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -35,8 +36,6 @@ public class ClienteView extends JFrame implements Serializable {
     private JTextField textCepFisico;
 
 
-    // Pessoa juridica
-    private JTextField textNomeJuridico;
     private JTextField textTelefoneJuridico;
     private JTextField textCnpj;
     private JTextField textContato;
@@ -47,7 +46,7 @@ public class ClienteView extends JFrame implements Serializable {
 
     public ClienteView() {
         setTitle("Cadastro de Clientes");
-        setBounds(100, 100, 500, 450);
+        setBounds(433, 164, 450, 300);
         JPanel contentPanel = new JPanel();
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPanel);
@@ -284,7 +283,8 @@ public class ClienteView extends JFrame implements Serializable {
         gbc_lblNomeJuridico.gridy = 1;
         panel.add(lblNomeJuridico, gbc_lblNomeJuridico);
 
-        textNomeJuridico = new JTextField();
+        // Pessoa juridica
+        JTextField textNomeJuridico = new JTextField();
         GridBagConstraints gbc_textNomeJuridico = new GridBagConstraints();
         gbc_textNomeJuridico.insets = new Insets(0, 0, 5, 0);
         gbc_textNomeJuridico.fill = GridBagConstraints.HORIZONTAL;
@@ -416,29 +416,6 @@ public class ClienteView extends JFrame implements Serializable {
         textContato.setColumns(10);
     }
 
-    private void limparFormFisico() {
-        textNomeFisico.setText("");
-        textTelefoneFisico.setText("");
-        textEmailFisico.setText("");
-        textCpf.setText("");
-        textCnh.setText("");
-        textValidadeCNH.setText("");
-        textRuaFisico.setText("");
-        textCepFisico.setText("");
-        textNumeroFisico.setText("");
-    }
-
-    private void limparFormJuridico() {
-        textNomeJuridico.setText("");
-        textTelefoneJuridico.setText("");
-        textEmailJuridico.setText("");
-        textCnpj.setText("");
-        textContato.setText("");
-        textCepJuridico.setText("");
-        textRuaJuridico.setText("");
-        textNumeroJuridico.setText("");
-    }
-
     private void actionSalvarPessoaFisica() {
        try {
            ClienteController clienteController = MainController.getClienteController();
@@ -454,7 +431,7 @@ public class ClienteView extends JFrame implements Serializable {
 
            clienteController.addPessoaFisica(nome, email, telefone, cpf, numCNH, validadeCNH, rua, numero, cep);
            JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
-           limparFormFisico();
+           this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
        } catch (EmailException emailException) {
            JOptionPane.showMessageDialog(this, emailException.getMessage());
            textEmailFisico.setText("");
@@ -480,7 +457,7 @@ public class ClienteView extends JFrame implements Serializable {
             String cep = textCepJuridico.getText();
             pessoaController.addPessoaJuridica(nome, email, telefone, cnpj, contato, rua, numero, cep);
             JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
-            limparFormJuridico();
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         } catch (EmailException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
             textEmailJuridico.setText("");

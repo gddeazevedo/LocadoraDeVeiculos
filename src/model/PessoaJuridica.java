@@ -33,4 +33,9 @@ public class PessoaJuridica extends Cliente implements Serializable {
     public String getNomeContato() {
         return nomePessoaContato;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s\t%s\t%s\t%s\t%s", getCnpj(), getTelefone(), getEndereco(), getNomeContato(), getNome());
+    }
 }

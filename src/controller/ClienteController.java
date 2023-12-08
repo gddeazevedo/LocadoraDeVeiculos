@@ -85,9 +85,8 @@ public class ClienteController implements Serializable {
 
         List<String> lista = new ArrayList<>();
 
-        for (PessoaFisica pessoas : pessoasF.values())
-            lista.add(String.format("%s\t%s\t%s\t%s", pessoas.getCpf(), pessoas.getNome(), pessoas.getTelefone(),
-                    pessoas.getEndereco()));
+        for (PessoaFisica pessoa : pessoasF.values())
+            lista.add(pessoa.toString());
 
         return lista;
     }
@@ -96,9 +95,8 @@ public class ClienteController implements Serializable {
 
         List<String> lista = new ArrayList<>();
 
-        for (PessoaJuridica pessoas : pessoasJ.values())
-            lista.add(String.format("%s\t%s\t%s\t%s\t%s", pessoas.getCnpj(), pessoas.getTelefone(),
-                    pessoas.getEndereco(), pessoas.getNomeContato(), pessoas.getNome()));
+        for (PessoaJuridica pessoa : pessoasJ.values())
+            lista.add(pessoa.toString());
 
         return lista;
     }

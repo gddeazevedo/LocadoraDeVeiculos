@@ -21,7 +21,7 @@ public class MainView extends JFrame implements Serializable {
     public MainView() {
         setTitle("Locadora de veculos");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(433, 164, 450, 300);
 
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

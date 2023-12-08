@@ -24,6 +24,7 @@ import java.awt.Insets;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.event.WindowEvent;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -43,7 +44,7 @@ public class VeiculoView extends JFrame implements Serializable {
 
     public VeiculoView() {
         setTitle("Veiculo");
-        setBounds(100, 100, 450, 400);
+        setBounds(433, 164, 450, 300);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -236,18 +237,6 @@ public class VeiculoView extends JFrame implements Serializable {
         panel_1.add(btnSalvar, gbc_btnSalvar);
     }
 
-    private void limparForm() {
-        textPlaca.setText("");
-        textModelo.setText("");
-        textCor.setText("");
-        textAno.setText("");
-        textFabricanteModelo.setText("");
-        textAnoModelo.setText("");
-        comboBoxStatusVeiculo.setSelectedItem(null);
-        comboBoxCategoria.setSelectedItem(null);
-        textKm.setText("");
-    }
-
     protected void actionSalvar() {
         try {
             CatalogoController catalogoController = MainController.getCatalogoController();
@@ -263,7 +252,7 @@ public class VeiculoView extends JFrame implements Serializable {
 
             catalogoController.addVeiculo(placa, ano, cor, nomeModelo, anoModelo, fabricante, categoria, status, km);
             JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
-            limparForm();
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         } catch (CategoriaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

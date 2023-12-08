@@ -19,6 +19,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.WindowEvent;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -31,7 +32,7 @@ public class CategoriaView extends JFrame implements Serializable {
 
     public CategoriaView() {
         setTitle("Categoria");
-        setBounds(100, 100, 450, 300);
+        setBounds(433, 164, 450, 300);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -101,11 +102,6 @@ public class CategoriaView extends JFrame implements Serializable {
 
     }
 
-    private void limparForm() {
-        textNome.setText("");
-        textTarifaDiaria.setText("");
-    }
-
     protected void actionSalvar() {
         CatalogoController catalogoController = MainController.getCatalogoController();
 
@@ -114,6 +110,6 @@ public class CategoriaView extends JFrame implements Serializable {
 
         catalogoController.addCategoria(nome, tarifaDiaria);
         JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
-        limparForm();
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 }

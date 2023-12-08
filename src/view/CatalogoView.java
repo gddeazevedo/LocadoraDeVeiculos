@@ -21,7 +21,7 @@ public class CatalogoView extends JFrame implements Serializable {
      */
     public CatalogoView() {
         setTitle("Catalogo");
-        setBounds(100, 100, 450, 300);
+        setBounds(433, 164, 450, 300);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));

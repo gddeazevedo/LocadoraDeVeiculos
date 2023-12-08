@@ -15,6 +15,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -28,7 +29,7 @@ public class SeguroView extends JFrame implements Serializable {
 
     public SeguroView() {
         setTitle("Seguro");
-        setBounds(100, 100, 450, 300);
+        setBounds(433, 164, 450, 300);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -103,11 +104,6 @@ public class SeguroView extends JFrame implements Serializable {
         panel_1.add(btnSalvar, gbc_btnSalvar);
     }
 
-    private void limparForm() {
-        textTipo.setText("");
-        textPercTarifa.setText("");
-    }
-
     protected void actionSalvar() {
         CatalogoController catalogoController = MainController.getCatalogoController();
         String tipo = textTipo.getText();
@@ -115,6 +111,6 @@ public class SeguroView extends JFrame implements Serializable {
 
         catalogoController.addSeguro(tipo, percTarifa);
         JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
-        limparForm();
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 }
