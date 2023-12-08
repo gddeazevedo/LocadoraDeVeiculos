@@ -55,8 +55,8 @@ public class ServicosController implements Serializable {
         MainController.save();
     }
 
-    public void addDevolucao(int km, EFormaPagamento pagamento, double valorPagamento) {
-        Devolucao d = new Devolucao(km, pagamento, valorPagamento);
+    public void addDevolucao(int km, Pagamento pagamento) {
+        Devolucao d = new Devolucao(km, pagamento);
         devolucoes.put(devolucoesKey, d);
         devolucoesKey++;
         MainController.save();

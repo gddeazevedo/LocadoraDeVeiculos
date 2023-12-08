@@ -10,14 +10,12 @@ public class Devolucao implements Serializable {
 
     private final Date data;
     private final int km;
-    private final EFormaPagamento pagamento;
-    private final double valorPagamento;
+    private Pagamento pagamento;
 
-    public Devolucao(int km, EFormaPagamento pagamento, double valorPagamento) {
+    public Devolucao(int km, Pagamento pagamento) {
         this.data = new Date();
         this.km = km;
         this.pagamento = pagamento;
-        this.valorPagamento = valorPagamento;
     }
 
     public Date getData() {
@@ -28,12 +26,7 @@ public class Devolucao implements Serializable {
         return km;
     }
 
-    public EFormaPagamento getPagamento() {
+    public Pagamento getPagamento() {
         return pagamento;
     }
-
-    public double getValorPagamento() {
-        return valorPagamento;
-    }
-
 }

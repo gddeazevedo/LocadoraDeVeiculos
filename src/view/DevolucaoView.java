@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import controller.MainController;
 import controller.ServicosController;
 import model.EFormaPagamento;
+import model.EMotivoPagamento;
+import model.Pagamento;
 
 import java.awt.GridBagLayout;
 import java.awt.Font;
@@ -26,6 +28,8 @@ public class DevolucaoView extends JFrame implements Serializable {
 
     private final JTextField textFieldValorPago;
     private final JComboBox<EFormaPagamento> comboBox;
+    private final JTextField textFieldDescricao;
+
 
     public DevolucaoView() {
         setBounds(433, 164, 450, 300);
@@ -118,13 +122,30 @@ public class DevolucaoView extends JFrame implements Serializable {
         gbc_lblFormaPagamento.gridy = 4;
         panel_1.add(lblFormaPagamento, gbc_lblFormaPagamento);
 
-        comboBox = new JComboBox<EFormaPagamento>(EFormaPagamento.values());
+        comboBox = new JComboBox<>(EFormaPagamento.values());
         GridBagConstraints gbc_comboBox = new GridBagConstraints();
         gbc_comboBox.insets = new Insets(0, 0, 5, 0);
         gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
         gbc_comboBox.gridx = 2;
         gbc_comboBox.gridy = 4;
         panel_1.add(comboBox, gbc_comboBox);
+
+        JLabel lblDescricao = new JLabel("Valor Pago:");
+        lblDescricao.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        GridBagConstraints gbc_lblDescricao = new GridBagConstraints();
+        gbc_lblDescricao.anchor = GridBagConstraints.EAST;
+        gbc_lblDescricao.insets = new Insets(0, 0, 5, 5);
+        gbc_lblDescricao.gridx = 1;
+        gbc_lblDescricao.gridy = 5;
+        panel_1.add(lblDescricao, gbc_lblDescricao);
+
+        textFieldDescricao = new JTextField();
+        GridBagConstraints gbc_textDescricao = new GridBagConstraints();
+        gbc_textDescricao.insets = new Insets(0, 0, 5, 0);
+        gbc_textDescricao.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textDescricao.gridx = 2;
+        gbc_textDescricao.gridy = 5;
+        panel_1.add(textFieldDescricao, gbc_textDescricao);
 
         JButton btnSalvar = new JButton("Salvar");
         btnSalvar.addActionListener(e -> actionSalvar());
@@ -133,7 +154,7 @@ public class DevolucaoView extends JFrame implements Serializable {
         gbc_btnSalvar.insets = new Insets(0, 0, 5, 0);
         gbc_btnSalvar.gridwidth = 4;
         gbc_btnSalvar.gridx = 0;
-        gbc_btnSalvar.gridy = 5;
+        gbc_btnSalvar.gridy = 6;
         panel_1.add(btnSalvar, gbc_btnSalvar);
     }
 
@@ -141,13 +162,14 @@ public class DevolucaoView extends JFrame implements Serializable {
         ServicosController servicosController = MainController.getServicosController();
         double valor = Double.parseDouble(textFieldValorPago.getText());
         int km = Integer.parseInt(textFieldValorPago.getText());
+        String descricao = textFieldDescricao.getText();
+        Date date = new Date();
+        var formaPagamento = (EFormaPagamento) comboBox.getSelectedItem();
+        Pagamento pagamento = new Pagamento(formaPagamento, date, valor, EMotivoPagamento.LOCACAO, descricao);
 
-        EFormaPagamento pagamento = (EFormaPagamento) comboBox.getSelectedItem();
-
-        servicosController.addDevolucao(km, pagamento, valor);
+        servicosController.addDevolucao(km, pagamento);
 
         JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
-
 }
