@@ -36,7 +36,7 @@ public class ValoresLocacaoView extends JFrame implements Serializable {
 
     public ValoresLocacaoView() {
         setTitle("Valores");
-        setBounds(433, 164, 450, 300);
+        setBounds(433, 164, 500, 500);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -78,11 +78,7 @@ public class ValoresLocacaoView extends JFrame implements Serializable {
         panel_1.add(comboBox, gbc_comboBox);
 
         JButton btnTotalDiarias = new JButton("Total das Diarias");
-        btnTotalDiarias.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                actionTotalDiarias();
-            }
-        });
+        btnTotalDiarias.addActionListener(e -> actionTotalDiarias());
 
         textArea = new JTextArea();
         GridBagConstraints gbc_textArea = new GridBagConstraints();

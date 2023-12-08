@@ -21,7 +21,7 @@ public class MainView extends JFrame implements Serializable {
     public MainView() {
         setTitle("Locadora de veculos");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(433, 164, 450, 300);
+        setBounds(433, 164, 500, 500);
 
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -43,7 +43,6 @@ public class MainView extends JFrame implements Serializable {
         initServicosButton(buttonsPanel);
         initClientesButton(buttonsPanel);
         initListagemButton(buttonsPanel);
-        initPagementoButton(buttonsPanel);
     }
 
     private void initCatalogoButton(JPanel panel) {
@@ -93,18 +92,6 @@ public class MainView extends JFrame implements Serializable {
         panel.add(btnListagem, gbc_btnListagem);
     }
 
-    private void initPagementoButton(JPanel panel) {
-        JButton btnPagamento = new JButton("Pagamento");
-        btnPagamento.addActionListener(e -> actionPagamentoView());
-        btnPagamento.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-        GridBagConstraints gbc_btnPagamento = new GridBagConstraints();
-        gbc_btnPagamento.anchor = GridBagConstraints.WEST;
-        gbc_btnPagamento.insets = new Insets(0, 0, 5, 5);
-        gbc_btnPagamento.gridx = 1;
-        gbc_btnPagamento.gridy = 0;
-        panel.add(btnPagamento, gbc_btnPagamento);
-    }
-
     private void actionCatalogoView() {
         CatalogoView catalogoView = new CatalogoView();
         catalogoView.setVisible(true);
@@ -125,8 +112,4 @@ public class MainView extends JFrame implements Serializable {
         listagemView.setVisible(true);
     }
 
-    private void actionPagamentoView() {
-        PagementoView pagamentoView = new PagementoView();
-        pagamentoView.setVisible(true);
-    }
 }

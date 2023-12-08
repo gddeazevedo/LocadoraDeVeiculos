@@ -38,7 +38,7 @@ public class ListagemView extends JFrame implements Serializable {
 
     public ListagemView() {
         setTitle("Listagem");
-        setBounds(433, 164, 450, 300);
+        setBounds(433, 164, 700, 500);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));

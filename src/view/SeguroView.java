@@ -29,7 +29,7 @@ public class SeguroView extends JFrame implements Serializable {
 
     public SeguroView() {
         setTitle("Seguro");
-        setBounds(433, 164, 450, 300);
+        setBounds(433, 164, 500, 500);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));

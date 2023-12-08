@@ -46,7 +46,7 @@ public class ClienteView extends JFrame implements Serializable {
 
     public ClienteView() {
         setTitle("Cadastro de Clientes");
-        setBounds(433, 164, 450, 300);
+        setBounds(433, 164, 500, 500);
         JPanel contentPanel = new JPanel();
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPanel);
