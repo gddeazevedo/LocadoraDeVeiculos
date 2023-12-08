@@ -55,6 +55,11 @@ public class ServicosController implements Serializable {
         MainController.save();
     }
 
+    public Locacao getLocacao(String uuid) {
+        UUID key = UUID.fromString(uuid);
+        return locacoes.get(key);
+    }
+
     public void addDevolucao(int km, Pagamento pagamento) {
         Devolucao d = new Devolucao(km, pagamento);
         devolucoes.put(devolucoesKey, d);

@@ -32,6 +32,7 @@ public class DevolucaoView extends JFrame implements Serializable {
 
 
     public DevolucaoView() {
+        setTitle("Devolucao");
         setBounds(433, 164, 450, 300);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

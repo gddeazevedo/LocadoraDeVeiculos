@@ -21,7 +21,7 @@ public class ServicosView extends JFrame implements Serializable {
     private static final long serialVersionUID = -4719141453780206841L;
 
     public ServicosView() {
-        setTitle("SistemaDaLocadora");
+        setTitle("Servicos");
         setBounds(433, 164, 450, 300);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,11 +69,7 @@ public class ServicosView extends JFrame implements Serializable {
         panel_1.add(btnFazerLocacao, gbc_btnFazerLocacao);
 
         JButton btnValoresLocacao = new JButton("Valores Da Locacao");
-        btnValoresLocacao.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                actionValoresLocacaoView();
-            }
-        });
+        btnValoresLocacao.addActionListener(e -> actionValoresLocacaoView());
         btnValoresLocacao.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         GridBagConstraints gbc_btnValoresLocacao = new GridBagConstraints();
         gbc_btnValoresLocacao.anchor = GridBagConstraints.WEST;

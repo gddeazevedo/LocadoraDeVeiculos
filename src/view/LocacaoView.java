@@ -173,17 +173,6 @@ public class LocacaoView extends JFrame implements Serializable {
         panel_1.add(btnSalvar, gbc_btnSalvar);
     }
 
-    public void initComboBoxVeiculo() {
-        String reservaUUID = (String) comboBoxReserva.getSelectedItem();
-        Reserva reserva = MainController.getServicosController().getReservaByUUID(reservaUUID);
-
-        comboBoxVeiculos = new JComboBox<>(
-                MainController
-                        .getCatalogoController()
-                        .getDefaultComboBoxModelForVeiculoFromCategoria(reserva.getCategoria())
-        );
-    }
-
     protected void actionSalvar() {
         ServicosController servicosController = MainController.getServicosController();
 

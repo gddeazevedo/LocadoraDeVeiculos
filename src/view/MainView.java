@@ -43,6 +43,7 @@ public class MainView extends JFrame implements Serializable {
         initServicosButton(buttonsPanel);
         initClientesButton(buttonsPanel);
         initListagemButton(buttonsPanel);
+        initPagementoButton(buttonsPanel);
     }
 
     private void initCatalogoButton(JPanel panel) {
@@ -92,6 +93,18 @@ public class MainView extends JFrame implements Serializable {
         panel.add(btnListagem, gbc_btnListagem);
     }
 
+    private void initPagementoButton(JPanel panel) {
+        JButton btnPagamento = new JButton("Pagamento");
+        btnPagamento.addActionListener(e -> actionPagamentoView());
+        btnPagamento.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+        GridBagConstraints gbc_btnPagamento = new GridBagConstraints();
+        gbc_btnPagamento.anchor = GridBagConstraints.WEST;
+        gbc_btnPagamento.insets = new Insets(0, 0, 5, 5);
+        gbc_btnPagamento.gridx = 1;
+        gbc_btnPagamento.gridy = 0;
+        panel.add(btnPagamento, gbc_btnPagamento);
+    }
+
     private void actionCatalogoView() {
         CatalogoView catalogoView = new CatalogoView();
         catalogoView.setVisible(true);
@@ -110,5 +123,10 @@ public class MainView extends JFrame implements Serializable {
     private void actionListagemView() {
         ListagemView listagemView = new ListagemView();
         listagemView.setVisible(true);
+    }
+
+    private void actionPagamentoView() {
+        PagementoView pagamentoView = new PagementoView();
+        pagamentoView.setVisible(true);
     }
 }

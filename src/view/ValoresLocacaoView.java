@@ -35,7 +35,7 @@ public class ValoresLocacaoView extends JFrame implements Serializable {
     private final JTextArea textArea;
 
     public ValoresLocacaoView() {
-        setTitle("SistemaDaLocadora");
+        setTitle("Valores");
         setBounds(433, 164, 450, 300);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
