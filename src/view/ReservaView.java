@@ -205,7 +205,7 @@ public class ReservaView extends JFrame implements Serializable {
             dFim = new SimpleDateFormat("dd/MM/yyyy").parse(textDataFim.getText());
 
             if (dInicio.after(dFim)) {
-                throw new DateTimeException("");
+                throw new DateTimeException("Data de fim precisa ser menor que a de inicio");
             }
 
             JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");

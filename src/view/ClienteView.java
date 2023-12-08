@@ -36,6 +36,7 @@ public class ClienteView extends JFrame implements Serializable {
     private JTextField textCepFisico;
 
 
+    private JTextField textNomeJuridico;
     private JTextField textTelefoneJuridico;
     private JTextField textCnpj;
     private JTextField textContato;
@@ -274,6 +275,7 @@ public class ClienteView extends JFrame implements Serializable {
         gbc_btnSalvar.gridy = 1;
         panel.add(btnSalvar, gbc_btnSalvar);
 
+        textNomeJuridico = new JTextField();
         JLabel lblNomeJuridico = new JLabel("Nome:");
         lblNomeJuridico.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         GridBagConstraints gbc_lblNomeJuridico = new GridBagConstraints();
@@ -284,7 +286,6 @@ public class ClienteView extends JFrame implements Serializable {
         panel.add(lblNomeJuridico, gbc_lblNomeJuridico);
 
         // Pessoa juridica
-        JTextField textNomeJuridico = new JTextField();
         GridBagConstraints gbc_textNomeJuridico = new GridBagConstraints();
         gbc_textNomeJuridico.insets = new Insets(0, 0, 5, 0);
         gbc_textNomeJuridico.fill = GridBagConstraints.HORIZONTAL;
@@ -447,7 +448,7 @@ public class ClienteView extends JFrame implements Serializable {
     protected void actionSalvarPessoaJuridica() {
         try {
             ClienteController pessoaController = MainController.getClienteController();
-            String nome = textNomeFisico.getText();
+            String nome = textNomeJuridico.getText();
             String telefone = textTelefoneJuridico.getText();
             String email = textEmailJuridico.getText();
             String cnpj = textCnpj.getText();

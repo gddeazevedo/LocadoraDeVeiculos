@@ -48,8 +48,8 @@ public class PessoaFisica extends Cliente implements Serializable {
         return getNome();
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s\t%s\t%s\t%s", getCpf(), getNome(), getTelefone(), getEndereco());
-    }
+//    @Override
+//    public String toString() {
+//        return String.format("%s\t%s\t%s\t%s", getCpf(), getNome(), getTelefone(), getEndereco());
+//    }
 }
