@@ -12,10 +12,22 @@ public class EnderecoValidator {
     }
 
     public static void validateNumero(String numero) throws NumeroEnderecoException {
-
+        try {
+            Integer.parseInt(numero);
+        } catch (Exception e) {
+            throw new NumeroEnderecoException("Numero da rua invalido");
+        }
     }
 
     public static void validateCEP(String cep) throws CEPException {
+        try {
+            Integer.parseInt(cep);
+        } catch (Exception e) {
+            throw new CEPException("CEP invalido");
+        }
 
+        if (cep.length() != 8) {
+            throw new CEPException("CEP invalido");
+        }
     }
 }
