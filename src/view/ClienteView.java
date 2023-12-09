@@ -5,10 +5,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.ClienteController;
 import controller.MainController;
-import exception.CNHException;
-import exception.CPFException;
-import exception.EmailException;
-import exception.ValidadeCNHException;
+import exception.*;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -439,9 +436,21 @@ public class ClienteView extends JFrame implements Serializable {
        } catch (CNHException cnhException) {
            JOptionPane.showMessageDialog(this, cnhException.getMessage());
            textCnh.setText("");
-       } catch (CPFException | ValidadeCNHException e) {
+       } catch (CPFException e) {
            JOptionPane.showMessageDialog(this, e.getMessage());
            textCpf.setText("");
+       } catch (ValidadeCNHException e) {
+           JOptionPane.showMessageDialog(this, e.getMessage());
+           textValidadeCNH.setText("");
+       } catch (NumeroEnderecoException e) {
+           JOptionPane.showMessageDialog(this, e.getMessage());
+           textNumeroFisico.setText("");
+       } catch (RuaException e) {
+           JOptionPane.showMessageDialog(this, e.getMessage());
+           textRuaFisico.setText("");
+       } catch (CEPException e) {
+           JOptionPane.showMessageDialog(this, e.getMessage());
+           textCepFisico.setText("");
        }
     }
 

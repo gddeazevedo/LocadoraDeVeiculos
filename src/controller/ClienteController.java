@@ -3,15 +3,13 @@ package controller;
 import java.io.Serial;
 import java.io.Serializable;
 
-import exception.CNHException;
-import exception.CPFException;
-import exception.EmailException;
-import exception.ValidadeCNHException;
+import exception.*;
 import model.Endereco;
 import model.PessoaJuridica;
 import model.PessoaFisica;
 import model.Cliente;
 import util.ClienteValidator;
+import util.EnderecoValidator;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
@@ -38,7 +36,7 @@ public class ClienteController implements Serializable {
             String rua,
             String numero,
             String cep
-    ) throws CNHException, CPFException, EmailException, ValidadeCNHException {
+    ) throws CNHException, CPFException, EmailException, ValidadeCNHException, CEPException, NumeroEnderecoException, RuaException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date dateValidadeCNH;
         try {
@@ -50,6 +48,9 @@ public class ClienteController implements Serializable {
         ClienteValidator.validateCPF(cpf);
         ClienteValidator.validateEmail(email);
         ClienteValidator.validateValidadeCNH(dateValidadeCNH);
+        EnderecoValidator.validateRua(rua);
+        EnderecoValidator.validateNumero(numero);
+        EnderecoValidator.validateCEP(cep);
         var endereco = new Endereco(rua, numero, cep);
         var cliente = new PessoaFisica(nome, email, telefone, endereco, cpf, numCNH, dateValidadeCNH);
         pessoasF.put(cpf, cliente);

@@ -3,6 +3,7 @@ package util;
 import exception.CNHException;
 import exception.CPFException;
 import exception.EmailException;
+import exception.ValidadeCNHException;
 
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -28,10 +29,10 @@ public class ClienteValidator {
         }
     }
 
-    public static void validateValidadeCNH(Date validadeCNH) throws CNHException {
+    public static void validateValidadeCNH(Date validadeCNH) throws ValidadeCNHException {
         Date today = new Date();
         if (validadeCNH.before(today)) {
-            throw new CNHException("CNH expirado");
+            throw new ValidadeCNHException("CNH expirado");
         }
     }
 }
