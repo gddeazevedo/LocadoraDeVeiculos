@@ -66,8 +66,11 @@ public class ClienteController implements Serializable {
             String rua,
             String numero,
             String cep
-    ) throws EmailException {
+    ) throws EmailException, NumeroEnderecoException, CEPException, RuaException {
         ClienteValidator.validateEmail(email);
+        EnderecoValidator.validateCEP(cep);
+        EnderecoValidator.validateRua(rua);
+        EnderecoValidator.validateNumero(numero);
         var endereco = new Endereco(rua, numero, cep);
         var cliente = new PessoaJuridica(nome, email, telefone, endereco, cnpj, nomePessoaContato);
         pessoasJ.put(cnpj, cliente);

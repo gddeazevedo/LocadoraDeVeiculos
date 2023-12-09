@@ -471,6 +471,15 @@ public class ClienteView extends JFrame implements Serializable {
         } catch (EmailException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
             textEmailJuridico.setText("");
+        } catch (NumeroEnderecoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            textNumeroJuridico.setText("");
+        } catch (RuaException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            textRuaJuridico.setText("");
+        } catch (CEPException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            textCepJuridico.setText("");
         }
     }
 }
