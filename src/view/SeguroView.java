@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.CatalogoController;
 import controller.MainController;
+import model.Categoria;
 
 import java.awt.GridBagLayout;
 
@@ -26,6 +27,7 @@ public class SeguroView extends JFrame implements Serializable {
 
     private final JTextField textTipo;
     private final JTextField textPercTarifa;
+    private final JComboBox<Categoria> comboBoxCategoria;
 
     public SeguroView() {
         setTitle("Seguro");
@@ -89,6 +91,23 @@ public class SeguroView extends JFrame implements Serializable {
         panel_1.add(textPercTarifa, gbc_textPercTarifa);
         textPercTarifa.setColumns(10);
 
+        JLabel lblCategoria = new JLabel("Categoria");
+        lblCategoria.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        GridBagConstraints gbc_lblCategoria = new GridBagConstraints();
+        gbc_lblCategoria.insets = new Insets(0, 0, 0, 5);
+        gbc_lblCategoria.anchor = GridBagConstraints.EAST;
+        gbc_lblCategoria.gridx = 1;
+        gbc_lblCategoria.gridy = 4;
+        panel_1.add(lblCategoria, gbc_lblCategoria);
+
+        comboBoxCategoria = new JComboBox<>(MainController.getCatalogoController().getDefaultComboBoxModelForCategoria());
+
+        GridBagConstraints gbc_comboBoxCategoria = new GridBagConstraints();
+        gbc_comboBoxCategoria.fill = GridBagConstraints.HORIZONTAL;
+        gbc_comboBoxCategoria.gridx = 2;
+        gbc_comboBoxCategoria.gridy = 4;
+        panel_1.add(comboBoxCategoria, gbc_comboBoxCategoria);
+
         JButton btnSalvar = new JButton("Salvar");
         btnSalvar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -107,9 +126,9 @@ public class SeguroView extends JFrame implements Serializable {
     protected void actionSalvar() {
         CatalogoController catalogoController = MainController.getCatalogoController();
         String tipo = textTipo.getText();
+        Categoria categoria = (Categoria) comboBoxCategoria.getSelectedItem();
         double percTarifa = Double.parseDouble(textPercTarifa.getText());
-
-        catalogoController.addSeguro(tipo, percTarifa);
+        catalogoController.addSeguro(categoria.getNome(), tipo, percTarifa);
         JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }

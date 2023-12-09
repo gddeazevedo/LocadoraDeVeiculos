@@ -46,8 +46,9 @@ public class CatalogoController implements Serializable {
         MainController.save();
     }
 
-    public void addSeguro(String tipo, double percentualTarifa) {
+    public void addSeguro(String categoria, String tipo, double percentualTarifa) {
         var seguro = new Seguro(tipo, percentualTarifa);
+        categorias.get(categoria).addSeguro(seguro);
         seguros.put(tipo, seguro);
         MainController.save();
     }
@@ -62,6 +63,10 @@ public class CatalogoController implements Serializable {
 
     public Set<String> getSeguros() {
         return seguros.keySet();
+    }
+
+    public List<Seguro> getSegurosByCategoria(String categoria) {
+        return categorias.get(categoria).getSeguros();
     }
 
     public Seguro getSeguro(String seguro) {

@@ -60,6 +60,10 @@ public class Categoria implements Serializable {
         seguros.add(seguro);
     }
 
+    public List<Seguro> getSeguros() {
+        return seguros;
+    }
+
     @Override
     public String toString() {
         return nome;

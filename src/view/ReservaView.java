@@ -10,6 +10,7 @@ import model.Categoria;
 import model.Cliente;
 import controller.MainController;
 import controller.ServicosController;
+import model.Seguro;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -42,7 +43,7 @@ public class ReservaView extends JFrame implements Serializable {
     private final JTextField textDataInicio;
     private final JTextField textDataFim;
     private final JComboBox<Categoria> comboBoxCategoriaVeiculo;
-    private final JList<String> listSeguro;
+    private final JList<Seguro> listSeguro;
     private final JComboBox<Cliente> comboBoxCliente;
 
 
@@ -165,7 +166,9 @@ public class ReservaView extends JFrame implements Serializable {
         gbc_lblSeguros.gridy = 4;
         panel_1.add(lblSeguros, gbc_lblSeguros);
 
-        listSeguro = new JList<>(new Vector<>(MainController.getCatalogoController().getSeguros()));
+        Categoria categoria = (Categoria) comboBoxCategoriaVeiculo.getSelectedItem();
+
+        listSeguro = new JList<>(new Vector<>(MainController.getCatalogoController().getSegurosByCategoria(categoria.getNome())));
         GridBagConstraints gbc_listSeguro = new GridBagConstraints();
         gbc_listSeguro.insets = new Insets(0, 0, 5, 0);
         gbc_listSeguro.fill = GridBagConstraints.BOTH;
@@ -196,7 +199,7 @@ public class ReservaView extends JFrame implements Serializable {
 
         Categoria categoria = (Categoria) comboBoxCategoriaVeiculo.getSelectedItem();
         Date dInicio;
-        List<String> seguros = listSeguro.getSelectedValuesList();
+        List<Seguro> seguros = listSeguro.getSelectedValuesList();
         Cliente cliente = (Cliente) comboBoxCliente.getSelectedItem();
         Date dFim;
 

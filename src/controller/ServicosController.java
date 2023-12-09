@@ -36,14 +36,14 @@ public class ServicosController implements Serializable {
             Date inicioLocacao,
             Date finalLocacao,
             Cliente cliente,
-            List<String> seguros
+            List<Seguro> seguros
     ) {
         UUID uuid = UUID.randomUUID();
         Reserva reserva = new Reserva(uuid, categoria, inicioLocacao, finalLocacao, cliente);
-        for (String seguro : seguros) {
-            reserva.addSeguro(MainController.getCatalogoController().getSeguro(seguro));
+        for (Seguro seguro : seguros) {
+            reserva.addSeguro(seguro);
         }
-        reservas.put(reserva.getUuid(), reserva); // insere novo objeto categoria no map
+        reservas.put(reserva.getUuid(), reserva);
         MainController.save();
     }
 
