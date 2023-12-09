@@ -4,6 +4,7 @@ import exception.CNHException;
 import exception.CPFException;
 import exception.EmailException;
 
+import java.util.Date;
 import java.util.regex.Pattern;
 
 public class ClienteValidator {
@@ -24,6 +25,13 @@ public class ClienteValidator {
     public static void validateCNH(String cnh) throws CNHException {
         if (cnh.length() != 12) {
             throw new CNHException("CNH invalido");
+        }
+    }
+
+    public static void validateValidadeCNH(Date validadeCNH) throws CNHException {
+        Date today = new Date();
+        if (validadeCNH.before(today)) {
+            throw new CNHException("CNH expirado");
         }
     }
 }
