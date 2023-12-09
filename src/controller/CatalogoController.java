@@ -41,6 +41,7 @@ public class CatalogoController implements Serializable {
     ) throws CategoriaException {
         Modelo modelo = new Modelo(nomeModelo, anoModelo, fabricanteModelo);
         Veiculo veiculo = new Veiculo(placa, anoFabricacao, cor, modelo, status, km);
+        veiculo.setCategoria(categoria);
         categoria.addVeiculo(veiculo);
         veiculos.put(placa, veiculo);
         MainController.save();
@@ -120,9 +121,8 @@ public class CatalogoController implements Serializable {
 
         List<String> lista = new ArrayList<>();
 
-        for (Veiculo veiculos : veiculos.values())
-            lista.add(String.format("%s\t%s\t%s\t%s\t%s", veiculos.getPlaca(), veiculos.getModelo(), veiculos.getCor(),
-                    veiculos.getAnoFabricacao(), veiculos.getStatus()));
+        for (Veiculo veiculo : veiculos.values())
+            lista.add(veiculo.getFormattedInfo());
 
         return lista;
     }

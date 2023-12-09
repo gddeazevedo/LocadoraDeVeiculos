@@ -31,6 +31,6 @@ public class Modelo implements Serializable {
 
     @Override
     public String toString() {
-        return getNome() + " " + getFabricante() + " " + getAno();
+        return nome + " " + fabricante + " " + ano;
     }
 }

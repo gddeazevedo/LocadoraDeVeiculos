@@ -13,6 +13,7 @@ public class Veiculo implements Serializable {
     private final Modelo modelo;
     private EStatusVeiculo status;
     private double quilometragem;
+    private Categoria categoria;
 
     public Veiculo(String placa, String anoFabricacao, String cor, Modelo modelo) {
         this.placa = placa;
@@ -60,6 +61,19 @@ public class Veiculo implements Serializable {
 
     public void setQuilometragem(double quilometragem) {
         this.quilometragem = quilometragem;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public String getFormattedInfo() {
+        return String.format("%s, %s, %s, %s, %s, %s", placa, modelo, cor,
+                anoFabricacao, status, categoria);
     }
 
     @Override
