@@ -96,11 +96,7 @@ public class ValoresLocacaoView extends JFrame implements Serializable {
         panel_1.add(btnTotalDiarias, gbc_btnTotalDiarias);
 
         JButton btnTotalSeguros = new JButton("Total dos Seguros");
-        btnTotalSeguros.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                actionTotalSeguros();
-            }
-        });
+        btnTotalSeguros.addActionListener(e -> actionTotalSeguros());
         btnTotalSeguros.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 14));
         GridBagConstraints gbc_btnTotalSeguros = new GridBagConstraints();
         gbc_btnTotalSeguros.insets = new Insets(0, 0, 5, 0);
