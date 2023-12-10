@@ -35,6 +35,7 @@ import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ReservaView extends JFrame implements Serializable {
     @Serial
@@ -43,7 +44,7 @@ public class ReservaView extends JFrame implements Serializable {
     private final JTextField textDataInicio;
     private final JTextField textDataFim;
     private final JComboBox<Categoria> comboBoxCategoriaVeiculo;
-    private final JList<Seguro> listSeguro;
+    private JList<Seguro> listSeguro;
     private final JComboBox<Cliente> comboBoxCliente;
 
 
@@ -166,15 +167,26 @@ public class ReservaView extends JFrame implements Serializable {
         gbc_lblSeguros.gridy = 4;
         panel_1.add(lblSeguros, gbc_lblSeguros);
 
-        Categoria categoria = (Categoria) comboBoxCategoriaVeiculo.getSelectedItem();
+        AtomicReference<Categoria> categoria = new AtomicReference<>((Categoria) comboBoxCategoriaVeiculo.getSelectedItem());
 
-        listSeguro = new JList<>(new Vector<>(MainController.getCatalogoController().getSegurosByCategoria(categoria.getNome())));
+        var catalogoController = MainController.getCatalogoController();
+        listSeguro = new JList<>(new Vector<>(catalogoController.getSegurosByCategoria(categoria.get().getNome())));
+
+
+
         GridBagConstraints gbc_listSeguro = new GridBagConstraints();
         gbc_listSeguro.insets = new Insets(0, 0, 5, 0);
         gbc_listSeguro.fill = GridBagConstraints.BOTH;
         gbc_listSeguro.gridx = 2;
         gbc_listSeguro.gridy = 4;
         panel_1.add(listSeguro, gbc_listSeguro);
+
+        comboBoxCategoriaVeiculo.addActionListener(e -> {
+            panel_1.remove(listSeguro);
+            categoria.set((Categoria) comboBoxCategoriaVeiculo.getSelectedItem());
+            listSeguro = new JList<>(new Vector<>(catalogoController.getSegurosByCategoria(categoria.get().getNome())));
+            panel_1.add(listSeguro, gbc_listSeguro);
+        });
 
         JLabel lblCliente = new JLabel("Cliente:");
         lblCliente.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
