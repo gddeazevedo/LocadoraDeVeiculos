@@ -1,9 +1,11 @@
 package model;
 
+import util.IFormatter;
+
 import java.io.Serial;
 import java.io.Serializable;
 
-public class Veiculo implements Serializable {
+public class Veiculo implements Serializable, IFormatter {
     @Serial
     private static final long serialVersionUID = -9134452354339066383L;
 
@@ -71,6 +73,7 @@ public class Veiculo implements Serializable {
         return categoria;
     }
 
+    @Override
     public String getFormattedInfo() {
         return String.format("%s, %s, %s, %s, %s, %s", placa, modelo, cor,
                 anoFabricacao, status, categoria);

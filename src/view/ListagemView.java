@@ -300,8 +300,8 @@ public class ListagemView extends JFrame implements Serializable {
         ServicosController controller = MainController.getServicosController();
 
         textAreaReservas.setText(null);
-        for (String UUID : controller.getListaFormatedReservas()) {
-            textAreaReservas.append(String.format("%s\n", UUID));
+        for (String formatedReserva : controller.getListaFormatedReservas()) {
+            textAreaReservas.append(String.format("%s\n", formatedReserva));
         }
 
     }
@@ -310,8 +310,8 @@ public class ListagemView extends JFrame implements Serializable {
         ServicosController controller = MainController.getServicosController();
 
         textAreaLocacoes.setText(null);
-        for (String reserva : controller.getListaFormatedLocacoes()) {
-            textAreaLocacoes.append(String.format("%s\n", reserva));
+        for (String formatedLocacao : controller.getListaFormatedLocacoes()) {
+            textAreaLocacoes.append(String.format("%s\n", formatedLocacao));
         }
     }
 }

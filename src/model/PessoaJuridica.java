@@ -1,9 +1,11 @@
 package model;
 
+import util.IFormatter;
+
 import java.io.Serial;
 import java.io.Serializable;
 
-public class PessoaJuridica extends Cliente implements Serializable {
+public class PessoaJuridica extends Cliente implements Serializable, IFormatter {
     @Serial
     private static final long serialVersionUID = 9134452354819055383L;
 
@@ -35,7 +37,7 @@ public class PessoaJuridica extends Cliente implements Serializable {
     }
 
     @Override
-    public String getFormatedInfo() {
+    public String getFormattedInfo() {
         return String.format("CNPJ: %s | Nome: %s | Telefone: %s | Pessoa para contato: %s | Endereco: %s",
                 getCnpj(), getNome(), getTelefone(), getNomeContato(), getEndereco());
     }

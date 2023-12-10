@@ -9,6 +9,7 @@ import controller.MainController;
 import controller.ServicosController;
 import model.EFormaPagamento;
 import model.EMotivoPagamento;
+import model.Locacao;
 import model.Pagamento;
 
 import java.awt.GridBagLayout;
@@ -29,6 +30,7 @@ public class DevolucaoView extends JFrame implements Serializable {
     private final JTextField textFieldValorPago;
     private final JComboBox<EFormaPagamento> comboBox;
     private final JTextField textFieldDescricao;
+    private final JComboBox<Locacao> comboBoxLocacao;
 
 
     public DevolucaoView() {
@@ -50,11 +52,27 @@ public class DevolucaoView extends JFrame implements Serializable {
         JPanel panel_1 = new JPanel();
         contentPane.add(panel_1, BorderLayout.CENTER);
         GridBagLayout gbl_panel_1 = new GridBagLayout();
-        gbl_panel_1.columnWidths = new int[] { 0, 0, 0, 0 };
-        gbl_panel_1.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-        gbl_panel_1.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
-        gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+        gbl_panel_1.columnWidths = new int[] { 0, 0, 0 };
+        gbl_panel_1.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+        gbl_panel_1.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+        gbl_panel_1.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
         panel_1.setLayout(gbl_panel_1);
+
+        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+        gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+        gbc_lblNewLabel.gridx = 0;
+        gbc_lblNewLabel.gridy = 0;
+        panel_1.add(lblNewLabel, gbc_lblNewLabel);
+
+        comboBoxLocacao = new JComboBox<>(MainController.getServicosController().getDefaultComboBoxModelForLocacoes());
+
+        GridBagConstraints gbc_comboBoxLocacao = new GridBagConstraints();
+        gbc_comboBoxLocacao.insets = new Insets(0, 0, 5, 0);
+        gbc_comboBoxLocacao.fill = GridBagConstraints.HORIZONTAL;
+        gbc_comboBoxLocacao.gridx = 1;
+        gbc_comboBoxLocacao.gridy = 0;
+        panel_1.add(comboBoxLocacao, gbc_comboBoxLocacao);
 
         JLabel lblData = new JLabel("Data Devolucao:");
         lblData.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -167,8 +185,9 @@ public class DevolucaoView extends JFrame implements Serializable {
         Date date = new Date();
         var formaPagamento = (EFormaPagamento) comboBox.getSelectedItem();
         Pagamento pagamento = new Pagamento(formaPagamento, date, valor, EMotivoPagamento.LOCACAO, descricao);
+        Locacao locacao = (Locacao)comboBoxLocacao.getSelectedItem();
 
-        servicosController.addDevolucao(km, pagamento);
+        servicosController.addDevolucao(locacao, km, pagamento);
 
         JOptionPane.showMessageDialog(this, "Cadastrado com Sucesso");
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));

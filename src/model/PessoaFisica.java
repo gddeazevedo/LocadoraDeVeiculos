@@ -1,10 +1,12 @@
 package model;
 
+import util.IFormatter;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
-public class PessoaFisica extends Cliente implements Serializable {
+public class PessoaFisica extends Cliente implements Serializable, IFormatter {
     @Serial
     private static final long serialVersionUID = -9131152354819066384L;
     private final String cpf;
@@ -49,7 +51,7 @@ public class PessoaFisica extends Cliente implements Serializable {
     }
 
     @Override
-    public String getFormatedInfo() {
+    public String getFormattedInfo() {
         return String.format("CPF: %s | Nome: %s | Telefone: %s | Endereco: %s",
                 getCpf(), getNome(), getTelefone(), getEndereco());
     }

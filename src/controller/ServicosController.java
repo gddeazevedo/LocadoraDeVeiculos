@@ -60,9 +60,12 @@ public class ServicosController implements Serializable {
         return locacoes.get(key);
     }
 
-    public void addDevolucao(int km, Pagamento pagamento) {
-        Devolucao d = new Devolucao(km, pagamento);
-        devolucoes.put(devolucoesKey, d);
+    public void addDevolucao(Locacao locacao, int km, Pagamento pagamento) {
+        Devolucao devolucao = new Devolucao(km, pagamento);
+        if (locacoes.get(locacao.getReserva().getUuid()) == locacao) {
+            locacao.setDevolucao(devolucao);
+        }
+        devolucoes.put(devolucoesKey, devolucao);
         devolucoesKey++;
         MainController.save();
     }
@@ -128,8 +131,7 @@ public class ServicosController implements Serializable {
         List<String> lista = new ArrayList<>();
 
         for (Reserva reserva : reservas.values())
-            lista.add(String.format("%s\t%s\t%s\t%s", reserva.getUuid(), reserva.getCategoria(),
-                    reserva.getInicioLocacao(), reserva.getFinalLocacao()));
+            lista.add(reserva.getFormattedInfo());
 
         return lista;
     }
@@ -139,8 +141,7 @@ public class ServicosController implements Serializable {
         List<String> lista = new ArrayList<>();
 
         for (Locacao locacao : locacoes.values())
-            lista.add(String.format("%s\t%s\t%s\t%s", locacao.getReserva(), locacao.getVeiculo(), locacao.getData(),
-                    locacao.getKm()));
+            lista.add(locacao.getFormattedInfo());
 
         return lista;
     }

@@ -1,10 +1,12 @@
 package model;
 
+import util.IFormatter;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 
-public class Reserva implements Serializable{
+public class Reserva implements Serializable, IFormatter {
     @Serial
     private static final long serialVersionUID = 8251858530671683555L;
 
@@ -71,6 +73,12 @@ public class Reserva implements Serializable{
 
     public Cliente getCliente() {
         return cliente;
+    }
+
+    @Override
+    public String getFormattedInfo() {
+        return String.format("%s, %s, %s, %s", uuid, categoria,
+                inicioLocacao, finalLocacao);
     }
 
     @Override

@@ -1,12 +1,13 @@
 package model;
 
+import util.IFormatter;
+
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Locacao implements Serializable {
+public class Locacao implements Serializable, IFormatter {
     @Serial
     private static final long serialVersionUID = 4995870241515199121L;
 
@@ -98,6 +99,11 @@ public class Locacao implements Serializable {
 
     public void setDevolucao(Devolucao devolucao) {
         this.devolucao = devolucao;
+    }
+
+    @Override
+    public String getFormattedInfo() {
+        return String.format("%s, %s, %s, %s", reserva, veiculo, data, km);
     }
 
     @Override
